@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+Game/Output
+Game/Engine/x64
+Game/Client/x64
+Game/.vs
