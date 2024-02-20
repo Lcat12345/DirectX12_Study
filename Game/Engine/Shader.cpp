@@ -37,7 +37,7 @@ void Shader::Update()
 	CMD_LIST->SetPipelineState(_pipelineState.Get());
 }
 
-void Shader::CreateShader(const wstring& path, const string& name, const string& version, ComPtr<ID3DBlob> blob, D3D12_SHADER_BYTECODE& shaderByteCode)
+void Shader::CreateShader(const wstring& path, const string& name, const string& version, ComPtr<ID3DBlob>& blob, D3D12_SHADER_BYTECODE& shaderByteCode)
 {
 	uint32 compileFlag = 0;
 #ifdef _DEBUG
