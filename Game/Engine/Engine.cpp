@@ -32,7 +32,6 @@ void Engine::Init(const WindowInfo& info)
 	_swapChain = make_shared<SwapChain>();
 	_descHeap = make_shared<DescriptorHeap>();
 
-
 	_device->Init();
 	_cmdQueue->Init(_device->GetDevice(), _swapChain, _descHeap);
 	_swapChain->Init(info, _device->GetDXGI(), _cmdQueue->GetCmdQueue());
