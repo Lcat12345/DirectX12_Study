@@ -12,8 +12,8 @@ class CommandQueue
 {
 public:
 	~CommandQueue();
-	void Init(ComPtr<ID3D12Device> device, shared_ptr<SwapChain> swapChain, shared_ptr<DescriptorHeap> descHeap);
 
+	void Init(ComPtr<ID3D12Device> device, shared_ptr<SwapChain> swapChain);
 	void WaitSync();		// cpu gpu 동기화 작업
 							// 새 울타리 지점을 만드는 작업
 	
@@ -21,7 +21,7 @@ public:
 	void RenderEnd();
 
 	ComPtr<ID3D12CommandQueue> GetCmdQueue() { return _cmdQueue; }
-
+	ComPtr<ID3D12GraphicsCommandList> GetCmdList() { return _cmdList; }
 
 private:
 	// 울타리의 역할
@@ -38,6 +38,5 @@ private:
 	ComPtr<ID3D12GraphicsCommandList>	_cmdList; // 그리기 명령들이 담긴 명령목록
 
 	shared_ptr<SwapChain>		_swapChain;
-	shared_ptr<DescriptorHeap>	_descHeap;
 };
 

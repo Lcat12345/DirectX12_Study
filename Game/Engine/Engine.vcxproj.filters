@@ -14,6 +14,9 @@
     <Filter Include="소스 파일\Resource">
       <UniqueIdentifier>{400e49b3-2079-432c-af09-a1d5273e94fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Shader">
+      <UniqueIdentifier>{1f79c3ce-131d-4f10-bb4c-b5c38f47a8e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx12.h">
@@ -34,11 +37,17 @@
     <ClInclude Include="SwapChain.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="DescriptorHeap.h">
-      <Filter>소스 파일\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="CommandQueue.h">
       <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="RootSignature.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>소스 파일\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>소스 파일\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -57,11 +66,22 @@
     <ClCompile Include="SwapChain.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="DescriptorHeap.cpp">
-      <Filter>소스 파일\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="CommandQueue.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="RootSignature.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>소스 파일\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>소스 파일\Resource</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resource\Shader\default.hlsli">
+      <Filter>소스 파일\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>
