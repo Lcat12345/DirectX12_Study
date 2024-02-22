@@ -66,6 +66,10 @@ void CommandQueue::RenderBegin(const D3D12_VIEWPORT* vp, const D3D12_RECT* rc)
 
 	_cmdList->SetGraphicsRootSignature(ROOT_SIGNATURE.Get());
 	GEngine->GetCB()->Clear();
+	GEngine->GetTableDescHeap()->Clear();
+
+	ID3D12DescriptorHeap* descHeap = GEngine->GetTableDescHeap()->GetDescriptorHeap().Get();
+	CMD_LIST->SetDescriptorHeaps(1, &descHeap);
 
 	// 자원 장벽이 명령 목록에 추가됨
 	_cmdList->ResourceBarrier(1, &barrier);

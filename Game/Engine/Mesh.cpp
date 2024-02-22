@@ -54,11 +54,25 @@ void Mesh::Render()
 	
 	// TODO
 	// 1. 버퍼에 데이터 세팅
-	// 2. 버퍼의 주소를 register에 전달
-	GEngine->GetCB()->PushData(0, &_transform, sizeof(_transform));
-	GEngine->GetCB()->PushData(1, &_transform, sizeof(_transform));
-	GEngine->GetCB()->PushData(2, &_transform, sizeof(_transform));
-	// CMD_LIST->SetGraphicsRootConstantBufferView(0, ???);
+	// 2. TablerDescriptorHeap에 CBV 전달
+	// 3. 모두 끝나면 CommitTable 호출
+	{
+		D3D12_CPU_DESCRIPTOR_HANDLE handle;
+		handle = GEngine->GetCB()->PushData(0, &_transform, sizeof(_transform));
+		GEngine->GetTableDescHeap()->SetCBV(handle, CBV_REGISTER::b0);
+	}
+	{
+		D3D12_CPU_DESCRIPTOR_HANDLE handle;
+		handle = GEngine->GetCB()->PushData(0, &_transform, sizeof(_transform));
+		GEngine->GetTableDescHeap()->SetCBV(handle, CBV_REGISTER::b1);
+	}
+	{
+		D3D12_CPU_DESCRIPTOR_HANDLE handle;
+		handle = GEngine->GetCB()->PushData(0, &_transform, sizeof(_transform));
+		GEngine->GetTableDescHeap()->SetCBV(handle, CBV_REGISTER::b2);
+	}
+
+	GEngine->GetTableDescHeap()->CommitTable();
 
 	CMD_LIST->DrawInstanced(_vertexCount, 1, 0, 0);
 }
