@@ -46,7 +46,7 @@ void Texture::CreateTexture(const wstring& path)
 		&resDesc,
 		D3D12_RESOURCE_STATE_GENERIC_READ,
 		nullptr,
-		IID_PPV_ARGS(&textureUploadHeap)
+		IID_PPV_ARGS(textureUploadHeap.GetAddressOf())
 	);
 
 	if (FAILED(hr))
@@ -71,6 +71,8 @@ void Texture::CreateView()
 	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_NONE;
 	DEVICE->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&_srvHeap));
+
+	_srvHandle = _srvHeap->GetCPUDescriptorHandleForHeapStart();
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
 	srvDesc.Format = _image.GetMetadata().format;
