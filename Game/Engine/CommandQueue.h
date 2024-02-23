@@ -20,8 +20,11 @@ public:
 	void RenderBegin(const D3D12_VIEWPORT* vp, const D3D12_RECT* rc);
 	void RenderEnd();
 
+	void FlushResourceCommandQueue();
+
 	ComPtr<ID3D12CommandQueue> GetCmdQueue() { return _cmdQueue; }
 	ComPtr<ID3D12GraphicsCommandList> GetCmdList() { return _cmdList; }
+	ComPtr<ID3D12GraphicsCommandList> GetResourceCmdList() { return _resCmdList; }
 
 private:
 	// 울타리의 역할
@@ -32,10 +35,13 @@ private:
 	uint64					_currentFence;
 	HANDLE					_fenceEvent;
 
-
 	ComPtr<ID3D12CommandQueue>			_cmdQueue; // 명령 대기열
 	ComPtr<ID3D12CommandAllocator>		_cmdAllocator;
 	ComPtr<ID3D12GraphicsCommandList>	_cmdList; // 그리기 명령들이 담긴 명령목록
+
+	// 리소스 업로드용 커맨드 리스트
+	ComPtr<ID3D12CommandAllocator>		_resCmdAllocator;
+	ComPtr<ID3D12GraphicsCommandList>	_resCmdList;
 
 	shared_ptr<SwapChain>		_swapChain;
 };

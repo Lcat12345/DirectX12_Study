@@ -24,6 +24,9 @@ void CommandQueue::Init(ComPtr<ID3D12Device> device, shared_ptr<SwapChain> swapC
 	
 	_cmdList->Close();
 
+	device->CreateCommandAllocator(D3D12_COMMAND_LIST_TYPE_DIRECT, IID_PPV_ARGS(&_resCmdAllocator));
+	device->CreateCommandList(0, D3D12_COMMAND_LIST_TYPE_DIRECT, _resCmdAllocator.Get(), nullptr, IID_PPV_ARGS(&_resCmdList));
+
 	device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&_fence));
 	_fenceEvent = ::CreateEvent(nullptr, FALSE, FALSE, nullptr);
 }
@@ -110,5 +113,18 @@ void CommandQueue::RenderEnd()
 
 	// 더블 버퍼링?
 	_swapChain->SwapIndex();
+}
+
+void CommandQueue::FlushResourceCommandQueue()
+{
+	_resCmdList->Close();
+
+	ID3D12CommandList* cmdListArr[] = { _resCmdList.Get()};
+	_cmdQueue->ExecuteCommandLists(_countof(cmdListArr), cmdListArr);
+
+	WaitSync();
+
+	_resCmdAllocator->Reset();
+	_resCmdList->Reset(_resCmdAllocator.Get(), nullptr);
 }
 

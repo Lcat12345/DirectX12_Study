@@ -55,6 +55,9 @@
     <ClInclude Include="TableDescriptorHeap.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\Resource</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EnginePch.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="TableDescriptorHeap.cpp">
       <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
