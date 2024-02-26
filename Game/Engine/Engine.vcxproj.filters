@@ -61,6 +61,12 @@
     <ClInclude Include="DepthStencilBuffer.h">
       <Filter>소스 파일\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>소스 파일\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EnginePch.cpp">
@@ -100,6 +106,12 @@
       <Filter>소스 파일\Resource</Filter>
     </ClCompile>
     <ClCompile Include="DepthStencilBuffer.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>소스 파일\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
       <Filter>소스 파일\Engine</Filter>
     </ClCompile>
   </ItemGroup>
