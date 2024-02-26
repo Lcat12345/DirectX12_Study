@@ -18,12 +18,16 @@ void Input::Update()
 
 		return;
 	}
+
+	BYTE asciiKeys[KEY_TYPE_COUNT] = {};
+	if (GetKeyboardState(asciiKeys) == false)
+		return;
 	
 	for (uint32 key = 0; key < KEY_TYPE_COUNT; key++)
 	{
 		KEY_STATE& state = _states[key];
 		// 키가 입력이 되었습니다.
-		if (GetAsyncKeyState(key) & 0x8000)
+		if (asciiKeys[key] & 0x80)
 		{			
 			// 이전에도 눌려있습니다.
 			if (state == KEY_STATE::PRESS || state == KEY_STATE::DOWN)

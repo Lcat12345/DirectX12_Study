@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Mesh.h"
-
 #include "Engine.h"
+#include "Material.h"
 
 void Mesh::Init(const vector<Vertex>& vertex, const vector<uint32>& index)
 {
@@ -19,14 +19,10 @@ void Mesh::Render()
 	// 1. 버퍼에 데이터 세팅
 	// 2. TablerDescriptorHeap에 CBV 전달
 	// 3. 모두 끝나면 CommitTable 호출
-	{
-		D3D12_CPU_DESCRIPTOR_HANDLE handle;
-		handle = GEngine->GetCB()->PushData(0, &_transform, sizeof(_transform));
-		GEngine->GetTableDescHeap()->SetCBV(handle, CBV_REGISTER::b0);
 
-		GEngine->GetTableDescHeap()->SetSRV(_tex->GetCpuHandle(), SRV_REGISTER::t0);
-	}
+	CONSTANT_BUFFER(CONSTANT_BUFFER_TYPE::TRANSFORM)->PushData(&_transform, sizeof(_transform));
 
+	_material->Update();
 
 	GEngine->GetTableDescHeap()->CommitTable();
 
