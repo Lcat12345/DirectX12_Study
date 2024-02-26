@@ -30,6 +30,5 @@ void DepthStencilBuffer::Init(const WindowInfo& window, DXGI_FORMAT dsvFormat)
 	DEVICE->CreateDescriptorHeap(&dsvHeapDesc, IID_PPV_ARGS(&_dsvHeap));
 
 	_dsvHandle = _dsvHeap->GetCPUDescriptorHandleForHeapStart();
-
 	DEVICE->CreateDepthStencilView(_dsvBuffer.Get(), nullptr, _dsvHandle);
 }
